@@ -1,0 +1,2 @@
+# NUSYPY
+python ide 
