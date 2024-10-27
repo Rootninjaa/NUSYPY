@@ -3,6 +3,17 @@
 import tkinter as tk
 from tkinter import messagebox, scrolledtext
 import os
+import webview
+
+
+def Chatgpt():
+    webview.create_window('ChatGpt', 'https://chatgpt.com')
+    webview.start()
+
+def package_add():
+    os.system("start cmd")
+    messagebox.showinfo("pip for NUSYPY", "add the library you want to add with pip example: pip install xyz")
+
 
 def save_code():
     # Get the filename and code from the user
@@ -26,34 +37,39 @@ def save_code():
     except Exception as e:
         messagebox.showerror("Error", f"Failed to save the file: {str(e)}")
 
-# Create Tkinter window
 window = tk.Tk()
 window.title("NUSYPY")
 window.geometry("800x600")
-window.configure(bg="black")  # Background color
+window.configure(bg="#9370db")
 
 # Frame for the input area
-frame = tk.Frame(window, bg="#ffffff", padx=10, pady=10)
-frame.pack(pady=20)
+frame = tk.Frame(window, bg="#9370db", padx=10, pady=10)
+frame.pack()
 
-# Label for the filename
-filename_label = tk.Label(frame, text="Filename (without extension):", bg="#ffffff")
+filename_label = tk.Label(frame, text="Filename (without extension):", bg="#ffffff", font="Courier 15 bold")
 filename_label.pack(pady=5)
+filename_label.config(bg="#9370db")
 
-# Entry for filename
 filename_entry = tk.Entry(frame, width=50)
 filename_entry.pack(pady=5)
 
-# Text area for code input with scrollbar
-code_label = tk.Label(frame, text="Enter your Python code:", bg="#ffffff")
+code_label = tk.Label(frame, text="Enter your Python code:", bg="#ffffff", font="Courier 15 bold")
 code_label.pack(pady=5)
+code_label.config(bg="#9370db")
 
 code_entry = scrolledtext.ScrolledText(frame, width=100, height=20, wrap=tk.WORD)
 code_entry.pack(pady=10)
 code_entry.config(bg="gray")
 
-# Save button
-save_button = tk.Button(frame, text="Save My Code", font="Courier 12 bold", command=save_code, bg="#4CAF50", fg="white")
+save_button = tk.Button(frame, text="Save My Code", font="Courier 14 bold", command=save_code, bg="#4CAF50", fg="white")
 save_button.pack(pady=20)
+
+packege_add = tk.Button(frame, text="NusyPip", font="Courier 14 bold", command=package_add)
+packege_add.place(x=0, y=50)
+packege_add.config(bg="#4CAF50", fg="white")
+
+copilot = tk.Button(frame, text="chatgpt", font="Courier 14 bold", command=Chatgpt)
+copilot.place(x=0, y=0)
+copilot.config(bg="#4CAF50", fg="white")
 
 window.mainloop()
